@@ -1,5 +1,6 @@
 body {
 	background: white;
+	position: absolute;
 }
 
 html{
@@ -7,4 +8,11 @@ html{
 	height:100%;
 	margin: -10px;
 	padding:0;
+}
+
+#elm {
+    display: block;
+    position: absolute;
+    width: 10px; height: 10px;
+    background-color: #000;
 }
