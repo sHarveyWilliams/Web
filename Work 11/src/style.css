@@ -109,11 +109,13 @@ ul.mainlist li {
   margin: 0 0 10px 0;
   padding: 14px 100px 14px 14px;
   word-break: break-word;
+
 }
 
 ul.mainlist {
   width: 100%;
   float: left;
+      position: absolute;
 }
 ul.mainlist li .buttons {
   width: 100px;
@@ -125,6 +127,7 @@ ul.mainlist li .buttons {
 }
 
 ul.mainlist li:last-of-type {
+	
   margin: 0;
 }
 
@@ -170,3 +173,21 @@ ul.mainlist li:last-of-type {
 	background: red;
 	float: right;
 }
+
+#footer
+{
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 80px;
+  background-color: blue;
+}
+
+.menu:after {
+	    right: 0px;
+    position: absolute;
+  content: '\2807';
+  font-size: 35px;
+  float: right;
+  }
