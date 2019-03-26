@@ -1,0 +1,32 @@
+{
+  "name": "js1",
+  "version": "0.0.1",
+  "description": "js networking demo",
+  "main": "index.js",
+  "scripts": {
+    "start": "./index.js",
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://gitlab.com/lordamot/JS1.git"
+  },
+  "keywords": [
+    "tutorial",
+    "js",
+    "networking"
+  ],
+  "author": "Sergey Lemeshev",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://gitlab.com/lordamot/JS1/issues"
+  },
+  "homepage": "https://gitlab.com/lordamot/JS1#README",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.3"
+  },
+  "devDependencies": {
+    "connect-multiparty": "^2.1.0"
+  }
+}

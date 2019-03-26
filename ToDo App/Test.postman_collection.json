@@ -1,0 +1,95 @@
+{
+	"info": {
+		"name": "Test",
+		"_postman_id": "f3743ccd-a70b-4ddc-a48c-c93060403cde",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "tasks list",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:3000/api/tasks",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"tasks"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "task add",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"test task 2\",\n\t\"description\": \"wooohooo\",\n\t\"datetime\": \"2018-12-23 12:50:43\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/tasks/add",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"tasks",
+						"add"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "task edit",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"test task 2 edited!\",\n\t\"description\": \"wooohooo\",\n\t\"datetime\": \"2018-12-23 12:50:43\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/tasks/1/edit",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"tasks",
+						"1",
+						"edit"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
