@@ -1,98 +1,90 @@
 var game = {
-	field: null, 
-	process : 1 ,
-	init: function(a)
-		{
-			this.field=a
-			game.start()
-		}
-	};
+		process: null,
+		field: null,
+		playerX: 'Крестики',
+		playerO: 'Нолики',
 		
-	game.start = function ()
-	{
-		var i, j;
-		var BasicArr = [];
-		alert("Игра крестики нолики")
-		BasicArr=game.getMassive(this.field)
-
-
-		while(this.process>0){
-				alert("Ход крестиков")
-				game.getMoveX(BasicArr, i, j);
-				console.clear()
-				console.log(BasicArr.join('\n'));
-				alert("Ход ноликов")
-				game.getMoveO(BasicArr, i, j);
-				console.clear()
-				console.log(BasicArr.join('\n'));
-					if (((BasicArr[0][0]=="x"&BasicArr[0][1]=="x"&BasicArr[0][2]=="x")||(BasicArr[0][0]=="x"&BasicArr[1][0]=="x"&BasicArr[2][0]=="x")||((BasicArr[1][0]=="x"&BasicArr[1][1]=="x"&BasicArr[1][2]=="x")||(BasicArr[2][0]=="x"&BasicArr[2][1]=="x"&BasicArr[2][2])=="x")||(BasicArr[0][0]=="x"&BasicArr[1][1]=="x"&BasicArr[2][2]=="x")||(BasicArr[0][2]=="x"&BasicArr[1][1]=="x"&BasicArr[2][0])=="x")){
-						alert("Победа крестиков!"); 
-						this.process=0;
-						break;}
-					if (((BasicArr[0][0]=="o"&BasicArr[0][1]=="o"&BasicArr[0][2]=="o")||(BasicArr[0][0]=="o"&BasicArr[1][0]=="o"&BasicArr[2][0]=="o")||((BasicArr[1][0]=="o"&BasicArr[1][1]=="o"&BasicArr[1][2]=="o")||(BasicArr[2][0]=="o"&BasicArr[2][1]=="o"&BasicArr[2][2])=="o")||(BasicArr[0][0]=="o"&BasicArr[1][1]=="o"&BasicArr[2][2]=="o")||(BasicArr[0][2]=="o"&BasicArr[1][1]=="o"&BasicArr[2][0])=="o")){
-						alert("Победа ноликов!");
-						this.process=0;
-						break;}
-							else{
-						
-						}
-			}
-		};
-	
-	game.getMoveX = function(BasicArr, i, j){
-			i=game.getRow();
-			j=game.getColumns();
-			game.getCheck(BasicArr, i, j)
-			return BasicArr[i][j] = "x";
-	};
-	
-	game.getMoveO = function(BasicArr, i, j){
-			i=game.getRow();
-			j=game.getColumns();
-			game.getCheck(BasicArr, i, j)
-			return BasicArr[i][j] = "o";
-	};
-	
-	game.getRow = function(BasicArr){
-		i=game.getValue();
-		return i;
-		};
+		init: function(field){
+		var process, allMoves, BasicArr
 		
-	game.getColumns = function(BasicArr){
-		j=game.getValue();
-		return j;
-	};
-	
-	game.getValue = function(){
-			value=+prompt("Введите значение");
-			if (value<=this.field){
-				return value;
-			}
-			else{
-				while(this.field<value){
-					value=+prompt("Ошибка! Введите значение еще раз");
+		alert("Игра крестики нолики");
+		
+		BasicArr=this.getMassive(this.field)
+		
+		for(var k=1; k<=(this.field**2)+1 ; k++){
+			if(k & 1){
+				alert("Ход :" + this.playerX);
+				allMoves='x'
 				}
-				return value;
+			else{
+				alert("Ход :" + this.playerO);
+				allMoves='o'
 			}
-	};
-	
-	game.getCheck = function(BasicArr, i, j){
+				i=this.getRowAndColumn('строка');
+				j=this.getRowAndColumn('столбец');
+				
+				
+				
 				if (BasicArr[i][j]=="-")
 					{
-					return BasicArr, i, j;
+						BasicArr[i][j]=allMoves;
 					}
 				else{
-					while((BasicArr[i][j]=="x")||(BasicArr[i][j]=="o")){
-						alert("Ячейка занята! Попробуйте другой ход");
-								i=game.getRow();
-								j=game.getColumns();
+						while((BasicArr[i][j]=="x")||(BasicArr[i][j]=="o")){
+							alert("Ячейка занята! Попробуйте другой ход");
+							i=this.getRowAndColumn();
+							j=this.getRowAndColumn();
+						}
+						BasicArr[i][j]=allMoves;
 					}
-					return BasicArr, i, j;
+				
+				console.clear()
+				console.log(BasicArr.join('\n'));
+				
+				if (this.checkHorizontal(BasicArr, allMoves) || this.checkVertical(BasicArr, allMoves)
+					|| this.checkDiagonal(BasicArr, allMoves)) {
+						alert("Победили: " + allMoves)
+					break;
 				}
-				};
+		  
+		}
+	},
 	
-	game.getMassive = function(field){
-	var BasicArr = [];
+	  checkHorizontal: function (arr, value) {
+	    for (var i = 0; i < arr.length; i += 1) {
+	      for (var j = 0; j < arr.length; j += 1) {
+	        if (arr[i][j] === value && arr[i][j + 1] === value && arr[i][j + 2] === value) {
+	          return true;
+	        }
+	      }
+	    }
+	    return false;
+	  },
+	
+	  checkVertical: function (arr, value) {
+	    for (var i = 0; i < arr.length; i += 1) {
+	      for (var j = 0; j < arr.length; j += 1) {
+	        if (arr[i][j] === value && arr[i + 1][j] === value && arr[i + 2][j] === value) {
+	          return true;
+	        }
+	      }
+	    }
+	    return false;
+	  },
+	
+	  checkDiagonal: function (arr, value) {
+	    for (var i = 0; i < arr.length; i += 1) {
+	      for (var j = 0; j < arr.length; j += 1) {
+	        if (arr[i][j] === value && arr[i + 1][j + 1] === value && arr[i + 2][j + 2] === value) {
+	          return true;
+	        }
+	      }
+	    }
+	    return false;
+	},
+	
+	getMassive: function(field){
+		var BasicArr=[];
 		for(var i = 0; i < this.field; i++) {
 					BasicArr[i] = [];
 				for(var j = 0; j < this.field; j ++) 
@@ -100,4 +92,20 @@ var game = {
 			}
 		
 		return BasicArr;
-	};
+	},
+	
+	getRowAndColumn: function(value){
+			value=+prompt("Введите значение " + value);
+			if (value<=2){
+				return value;
+			}
+			else{
+				while(value>2){
+					value=+prompt("Ошибка! Введите значение еще раз");
+				}
+				return value;
+			}
+	}
+	}
+game.init(field)
+
